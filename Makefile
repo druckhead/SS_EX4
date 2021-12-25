@@ -19,7 +19,7 @@ algorithm.o:
 nodes.o: 
 	${CC} ${CFLAGS} -c 
 
-edges.o.o: 
+edges.o: 
 	${CC} ${CFLAGS} -c
 
 .PHONY: clean all
