@@ -18,6 +18,6 @@ typedef struct Edge
     int weight;
     int src;
     int dest;
-} Edge;
+} edge, *edge_list;
 
 #endif

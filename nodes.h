@@ -13,10 +13,11 @@
 
 #define __NODE_H__
 
+#include "edges.h"
 typedef struct Node
 {
     int id;
-    
-} Node;
+    edge_list neighbors;
+} node, *node_list;
 
 #endif
