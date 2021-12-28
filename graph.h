@@ -19,15 +19,15 @@ typedef struct Graph
 {
     int size;
     node_list vertices;
-} graph, *p_node;
+} graph;
 
-void graph_init (p_node *head);
-void del_init_graph(p_node *head);;
+void graph_init (graph *head);
+void del_init_graph(graph *head);;
 
-void add_node(p_node *head);
-void del_node(p_node *head);
+void add_node(graph *head);
+void del_node(graph *head);
 
-void shortest_path(p_node *head);
-void tsp(p_node *head);
+void shortest_path(graph *head);
+void tsp(graph *head);
 
 #endif

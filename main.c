@@ -13,28 +13,42 @@
 #include <stdlib.h>
 #include "nodes.h"
 #include "edges.h"
+#include "graph.h"
 
-// #define BUFF_SIZE 256
-
-int main(int argc, char const *argv[])
+int main(void)
 {
     char ch = 0;
+    graph *g = NULL;
+
     while ((ch = getchar()) != '\n')
     {
         switch (ch)
         {
         case 'A':
+            if (g)
+            {
+                free(g);
+                g = malloc(sizeof(graph));
+                graph_init(g);
+            }
+            else
+            {
+                g = malloc(sizeof(graph));
+                graph_init(g);
+            }
             break;
         case 'B':
+            // add_node(g);
             break;
         case 'D':
+            // del_node(g);
             break;
         case 'S':
+            // shortest_path(g);
             break;
         case 'T':
+            // tsp(g);
             break;
-
-        case 'n':
-            break;
+        }
     }
 }

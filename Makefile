@@ -10,17 +10,23 @@ all: ${EXE}
 ${EXE}: 
 	${CC} ${CFLAGS} -o ${EXE}
 
-lib.a: 
-	${AR}
+#lib.a: 
+#	${AR}
 
-algorithm.o: 
-	${CC} ${CFLAGS} -c 
+#algorithm.o: 
+#	${CC} ${CFLAGS} -c
 
-nodes.o: 
-	${CC} ${CFLAGS} -c 
+main.o: main.c graph.o
+	${CC} ${CFLAGS} main.c graph.c -o main.o
 
-edges.o: 
-	${CC} ${CFLAGS} -c
+# graph.o: graph.c graph.h edges.h  nodes.h
+# 	${CC} ${CFLAGS} -c graph.c -o graph.o
+
+# nodes.o: nodes.c nodes.h
+# 	${CC} ${CFLAGS} -c nodes.c
+
+# edges.o: edges.c edges.h
+# 	${CC} ${CFLAGS} -c edges.c
 
 .PHONY: clean all
 
