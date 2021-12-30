@@ -10,24 +10,37 @@
  */
 
 #ifndef __GRAPH_H__
-
 #define __GRAPH_H__
 
-#include "nodes.h"
-#include "edges.h"
-typedef struct Graph
+typedef struct _node_ *pnode;
+
+typedef struct _edge_
 {
-    int size;
-    node_list vertices;
-} graph;
+    int weight;
+    pnode dest;
+    struct _edge_ *next;
+} edge, *pedge;
 
-void graph_init (graph *head);
-void del_init_graph(graph *head);;
 
-void add_node(graph *head);
-void del_node(graph *head);
+typedef struct _node_
+{
+    int id;
+    pedge neighbours;
+    struct _node_ *next;
+} node, *pnode;
 
-void shortest_path(graph *head);
-void tsp(graph *head);
+
+
+void graph_init (pnode *head);
+void del_init_graph(pnode *head);;
+
+void add_node(pnode *head);
+void del_node(pnode *head);
+
+void add_edge(pnode *head, int src, int dest, int weight);
+// int is_edge(pnode *head, int src, int dest);
+
+void shortest_path(pnode *head);
+void tsp(pnode *head);
 
 #endif

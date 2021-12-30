@@ -11,6 +11,7 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "nodes.h"
 #include "edges.h"
 #include "graph.h"
@@ -18,29 +19,40 @@
 int main(void)
 {
     char ch = 0;
-    graph *g = NULL;
-
+    char ch2 = 0;
+    // int n_cnt = 0;
+    
+    pnode graph;
+    graph = NULL;
     while ((ch = getchar()) != '\n')
     {
+        if (isupper(ch2))
+        {
+            ch = ch2;
+            ch2 = 0;
+        }
         switch (ch)
         {
         case 'A':
-            if (g)
+            ch2 = 0;
+            graph_init(&graph);
+            while (!isupper((ch2 = getchar())))
             {
-                free(g);
-                g = malloc(sizeof(graph));
-                graph_init(g);
-            }
-            else
-            {
-                g = malloc(sizeof(graph));
-                graph_init(g);
+                
             }
             break;
         case 'B':
+        /*
+        ?   TODO : check if node exists, if so delete all destinations
+        ?       and update to new ones.
+        !   DO NOT delete edges that are coming into node 
+        */
             // add_node(g);
             break;
         case 'D':
+        /*
+        ! free incoming and outgoing edges
+        */
             // del_node(g);
             break;
         case 'S':

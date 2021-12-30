@@ -11,45 +11,58 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-
-#include "graph.h"
-#include "nodes.h"
-#include "edges.h"
-
 #include <ctype.h>
 
-void graph_init(graph *head)
-{
-    int V = 0;
-    int src = 0, dest = 0, weight = 0;
-    scanf("%d", &V);
-    head->size = V;
-    head->vertices = malloc(V * sizeof(edge_list));
-    for (int i = 0; i < V; i++)
-    {
-        head->vertices[i].neighbors = NULL;
-    }
-    getchar(); getchar(); getchar();
-    char ch = 0;
-    int cnt = 0;
+#include "graph.h"
 
-    while(ch !='\n'){
-        if (ch == 'n')
-        {
-            cnt = 0;
-        }
-        
-        if (cnt)
-        {
-            scanf("%c",&ch);
-        }
-        else{
-            scanf("%d %d", &dest, &weight);
-        }
-        cnt++;
+void graph_init(pnode *head)
+{
+    /*
+    *  head node is passed by reference
+    *  if (*head) is null then allocate mem & init vals
+    ?  TODO: add the allocation of the rest of the graph data
+    ! DON'T FORGET TO FREE ALL ALLOCATED MEMORY
+    */
+    // int src = 0, dest = 0, weight = 0;
+    // char ch = 0;
+    if (*head == NULL)
+    {
+        int V = 0;
+        scanf("%d", &V);
+        *head = malloc(V * sizeof(*head));
+        (*head)->neighbours = NULL;
+        (*head)->next = NULL;
     }
-    
+    else
+    {
+        /*
+        *   the graph exists, so delete it (free all mem assosiated with it)
+        *   & create new graph
+        ?   free memory and create new graph
+        */
+       
+
+    }
 }
+
+// void add_edge(pnode *head, int src, int dest, int weight)
+// {
+//     if (*head != NULL)
+//     {
+//         pnode *curr = (*head);
+//         while ((*curr)->next != NULL)
+//         {
+//             if ((*curr)->id == src)
+//             {
+//                 pedge *h = (*curr)->neighbours;
+//                 pedge *tmp = (*curr)->neighbours->next;
+//                 edge *e = (edge*)malloc(sizeof(sizeof(edge*)));
+//             }
+//         }
+
+//     }
+// }
+
 // void del_init_graph(graph *head)
 // {
 
