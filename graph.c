@@ -40,8 +40,12 @@ void graph_init(pnode *head)
         *   & create new graph
         ?   free memory and create new graph
         */
-       
-
+       pnode ptr = *head;
+       while(ptr)
+       {
+        //    (*head)
+        ptr=ptr->next;
+       }
     }
 }
 

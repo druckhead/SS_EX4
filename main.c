@@ -38,7 +38,7 @@ int main(void)
             graph_init(&graph);
             while (!isupper((ch2 = getchar())))
             {
-                
+
             }
             break;
         case 'B':
@@ -62,5 +62,9 @@ int main(void)
             // tsp(g);
             break;
         }
+    }
+    if (graph)
+    {
+        free(graph);
     }
 }
