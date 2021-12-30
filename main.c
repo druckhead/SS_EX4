@@ -20,8 +20,9 @@ int main(void)
 {
     char ch = 0;
     char ch2 = 0;
-    // int n_cnt = 0;
-    
+    int n_cnt = 0;
+    int src = 0, dest = 0, weight = 0;
+
     pnode graph;
     graph = NULL;
     while ((ch = getchar()) != '\n')
@@ -36,23 +37,34 @@ int main(void)
         case 'A':
             ch2 = 0;
             graph_init(&graph);
+
             while (!isupper((ch2 = getchar())))
             {
-
+                if (ch2 == ' ' && n_cnt > 0)
+                {
+                    scanf("%d %d", &dest, &weight);
+                    add_edge(&graph, src, dest, weight);
+                }
+                if (ch2 == 'n')
+                {
+                    n_cnt++;
+                    scanf("%d", &src);
+                    graph->id = src;
+                }
             }
             break;
         case 'B':
-        /*
-        ?   TODO : check if node exists, if so delete all destinations
-        ?       and update to new ones.
-        !   DO NOT delete edges that are coming into node 
-        */
+            /*
+            ?   TODO : check if node exists, if so delete all destinations
+            ?       and update to new ones.
+            !   DO NOT delete edges that are coming into node
+            */
             // add_node(g);
             break;
         case 'D':
-        /*
-        ! free incoming and outgoing edges
-        */
+            /*
+            ! free incoming and outgoing edges
+            */
             // del_node(g);
             break;
         case 'S':

@@ -23,7 +23,6 @@ void graph_init(pnode *head)
     ?  TODO: add the allocation of the rest of the graph data
     ! DON'T FORGET TO FREE ALL ALLOCATED MEMORY
     */
-    // int src = 0, dest = 0, weight = 0;
     // char ch = 0;
     if (*head == NULL)
     {
@@ -40,13 +39,36 @@ void graph_init(pnode *head)
         *   & create new graph
         ?   free memory and create new graph
         */
-       pnode ptr = *head;
-       while(ptr)
-       {
-        //    (*head)
-        ptr=ptr->next;
-       }
+        //    pnode nptr = *head;
+        //    pedge eptr = (*head)->neighbours;
+        //    while(nptr)
+        //    {
+        //        while (eptr)
+        //        {
+
+        //            eptr=eptr->next;
+        //        }
+        //     nptr=nptr->next;
+        //    }
     }
+}
+
+void add_edge(pnode *head, int src, int dest, int weight)
+{
+    // (*head)->id = src;
+
+    pedge new_edge = malloc(sizeof(new_edge));
+    pnode new_node = malloc(sizeof(new_node));
+
+    new_node->id = dest;
+    new_edge->weight = weight;
+    new_edge->dest = new_node;
+
+    pedge neighbour_ptr = (*head)->neighbours;
+    new_edge->next = neighbour_ptr;
+    
+
+    (*head)->neighbours = new_edge;
 }
 
 // void add_edge(pnode *head, int src, int dest, int weight)
