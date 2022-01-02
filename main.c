@@ -1,82 +1,41 @@
-/**
- * @file main.c
- * @author daniel raz (https://github.com/druckhead)
- * @brief
- * @version 0.1
- * @date 2021-12-21
- *
- * @copyright Copyright (c) 2021
- *
- */
-#include <ctype.h>
-#include <stdio.h>
+#include "graph.h"
 #include <stdlib.h>
 
-#include "nodes.h"
-#include "edges.h"
-#include "graph.h"
-
-int main(void)
+int main()
 {
-    char ch = 0;
-    char ch2 = 0;
-    int n_cnt = 0;
-    int src = 0, dest = 0, weight = 0;
-
-    pnode graph;
-    graph = NULL;
-    while ((ch = getchar()) != '\n')
+    while (ch != '\n')
     {
-        if (isupper(ch2))
-        {
-            ch = ch2;
-            ch2 = 0;
-        }
         switch (ch)
         {
         case 'A':
-            ch2 = 0;
-            graph_init(&graph);
-
-            while (!isupper((ch2 = getchar())))
-            {
-                if (ch2 == ' ' && n_cnt > 0)
-                {
-                    scanf("%d %d", &dest, &weight);
-                    add_edge(&graph, src, dest, weight);
-                }
-                if (ch2 == 'n')
-                {
-                    n_cnt++;
-                    scanf("%d", &src);
-                    graph->id = src;
-                }
-            }
+            ch = getchar();
+            num_vertex = 0;
+            num_edges = 0;
+            scanf("%d", &num_vertex);
+            graph_init(&head);
+            print_graph(&head);
             break;
         case 'B':
-            /*
-            ?   TODO : check if node exists, if so delete all destinations
-            ?       and update to new ones.
-            !   DO NOT delete edges that are coming into node
-            */
-            // add_node(g);
+            add_node(&head);
+            // printGraph_cmd(&head);
             break;
         case 'D':
-            /*
-            ! free incoming and outgoing edges
-            */
-            // del_node(g);
-            break;
-        case 'S':
-            // shortest_path(g);
+            del_node(&head);
+            // printGraph_cmd(&head);
             break;
         case 'T':
-            // tsp(g);
+            tsp(&head);
+            break;
+        case 'S':
+            shortest_path(&head);
             break;
         }
+        if (isalpha(ch))
+            continue;
+        if (ch == '\n')
+            break;
+        ch = getchar();
     }
-    if (graph)
-    {
-        free(graph);
-    }
+    delete_graph(&head);
+    return 0;
 }

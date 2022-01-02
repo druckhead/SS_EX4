@@ -7,26 +7,20 @@ EXE=graph
 
 all: ${EXE}
 
-${EXE}: 
-	${CC} ${CFLAGS} -o ${EXE}
+${EXE}: main.o libgraps.a
+	${CC} ${CFLAGS} -o ${EXE} main.o graph.o heap.o
 
-#lib.a: 
-#	${AR}
+main.o: main.c graph.h
+	${CC} ${CFLAGS} -c main.c
 
-#algorithm.o: 
-#	${CC} ${CFLAGS} -c
+libgraps.a: graph.o heap.o
+	${AR} libgraps.a graph.o heap.o
 
-main.o: main.c graph.o
-	${CC} ${CFLAGS} main.c graph.c -o main.o
+graph.o: graph.c graph.h
+	${CC} ${CFLAGS} -c graph.c
 
-# graph.o: graph.c graph.h edges.h  nodes.h
-# 	${CC} ${CFLAGS} -c graph.c -o graph.o
-
-# nodes.o: nodes.c nodes.h
-# 	${CC} ${CFLAGS} -c nodes.c
-
-# edges.o: edges.c edges.h
-# 	${CC} ${CFLAGS} -c edges.c
+heap.o: heap.c heap.h
+	${CC} ${CFLAGS} -c heap.c
 
 .PHONY: clean all
 

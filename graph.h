@@ -1,16 +1,17 @@
-/**
- * @file graph.h
- * @author your name (you@domain.com)
- * @brief 
- * @version 0.1
- * @date 2021-12-28
- * 
- * @copyright Copyright (c) 2021
- * 
- */
+#include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
 
-#ifndef __GRAPH_H__
-#define __GRAPH_H__
+#ifndef __GRAPH__
+#define __GRAPH__
+
+#define INFINITY 99999999
+#define MIN(X, Y) (((X) < (Y)) ? (X) : (Y))
+
+char ch;
+int num_vertex;
+int num_edges;
+int *visited;
 
 typedef struct _node_ *pnode;
 
@@ -21,26 +22,27 @@ typedef struct _edge_
     struct _edge_ *next;
 } edge, *pedge;
 
-
 typedef struct _node_
 {
     int id;
+    int distance;
     pedge neighbours;
+    struct _node_ *previous;
     struct _node_ *next;
 } node, *pnode;
 
-
-
-void graph_init (pnode *head);
-void del_init_graph(pnode *head);;
-
-void add_node(pnode *head);
-void del_node(pnode *head);
-
-void add_edge(pnode *head, int src, int dest, int weight);
-// int is_edge(pnode *head, int src, int dest);
-
-void shortest_path(pnode *head);
-void tsp(pnode *head);
+pnode head;
+pnode tail;
 
 #endif
+
+void graph_init(pnode *head);
+void add_node(pnode *head);
+void del_node(pnode *head);
+void unlink_neighbors(pnode *head, int nodeId);
+void print_graph(pnode *head);
+void delete_graph(pnode *head);
+int dijkstra(pnode *head, int src, int dest);
+void shortest_path(pnode *head);
+void tsp(pnode *head);
+void free_edges(pnode *head);
