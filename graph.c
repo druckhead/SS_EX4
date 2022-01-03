@@ -415,7 +415,7 @@ void shortest_path(pnode *head)
     {
         if (tempHead->id == dest)
         {
-            printf("Dijsktra shortest path: %d\n", (tempHead->distance) < INFINITY ? (tempHead->distance) : -1);
+            printf("Dijsktra shortest path: %d \n", (tempHead->distance) < INFINITY ? (tempHead->distance) : -1);
             break;
         }
         tempHead = tempHead->next;
@@ -779,9 +779,9 @@ void tsp(pnode *head)
     temp_permute = NULL;
     // printf("\n___________________________________\n");
     if (minDistance < INFINITY)
-        printf("TSP shortest path: %d\n", minDistance);
+        printf("TSP shortest path: %d \n", minDistance);
     else
-        printf("TSP shortest path: -1\n");
+        printf("TSP shortest path: -1 \n");
     // printf("\n___________________________________\n");
 
     if (ch == ' ')
