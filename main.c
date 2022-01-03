@@ -13,7 +13,7 @@ int main()
             num_edges = 0;
             scanf("%d", &num_vertex);
             graph_init(&head);
-            print_graph(&head);
+            // print_graph(&head);
             break;
         case 'B':
             add_node(&head);
