@@ -1,9 +1,9 @@
 #include "graph.h"
 #include "heap.h"
 
-char ch =0;
-int num_vertex=0;
-int num_edges=0;
+char ch = 0;
+int num_vertex = 0;
+int num_edges = 0;
 int *visited;
 pnode head = NULL;
 pnode tail = NULL;
@@ -62,12 +62,14 @@ void graph_init(pnode *head)
     if (num_vertex == 0)
         return;
     int i = 0;
-    char *buff_in = calloc(i, sizeof(*buff_in));
+    char *buff_in = calloc((i + 1), sizeof(*buff_in));
     for (i = 0; (ch = getchar()) != '\n' && !isupper(ch); i++)
     {
         buff_in = realloc(buff_in, ((i + 1) * sizeof(*buff_in)));
         *(buff_in + i) = ch;
     }
+    buff_in = realloc(buff_in, ((i + 1) * sizeof(*buff_in)));
+    *(buff_in + i) = '\0';
 
     pnode *vert_created = calloc(num_vertex, sizeof(**vert_created));
     int number = num_vertex;
@@ -82,7 +84,7 @@ void graph_init(pnode *head)
             continue;
         }
         int src = 0;
-        while (isdigit(*(buff_in + _buff_index_)))
+        while (*(buff_in + _buff_index_) != '\0' && isdigit(*(buff_in + _buff_index_)))
         {
             src *= 10;
             src += *(buff_in + _buff_index_) - '0';
@@ -104,7 +106,7 @@ void graph_init(pnode *head)
         while (1)
         {
             int dest = 0;
-            while (isdigit(*(buff_in + _buff_index_)))
+            while (*(buff_in + _buff_index_) != '\0' && isdigit(*(buff_in + _buff_index_)))
             {
                 dest *= 10;
                 dest += *(buff_in + _buff_index_) - '0';
@@ -125,7 +127,7 @@ void graph_init(pnode *head)
                 destnode = vert_created[dest % num_vertex];
             pedge e = malloc(sizeof(*e));
             int weight = 0;
-            while (isdigit(*(buff_in + _buff_index_)))
+            while (*(buff_in + _buff_index_) != '\0' && isdigit(*(buff_in + _buff_index_)))
             {
                 weight *= 10;
                 weight += *(buff_in + _buff_index_) - '0';
